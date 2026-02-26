@@ -3,10 +3,10 @@ import frappe
 
 # Checks if all Salary Slip roles assigned to the user are marked as hide=1
 def _all_user_roles_hidden(user):
-    user_roles = set(frappe.get_roles(user))
+    user_roles = set(frappe.db.sql("SELECT role FROM `tabHas Role` WHERE parent = %s", user, pluck="role"))
 
     rows = frappe.db.sql("""
-        SELECT role, hide FROM `tabCustom DocPerm`
+        SELECT role, hide FROM `tabDocPerm`
         WHERE parent = 'Salary Slip'
     """, as_dict=True)
 
@@ -34,14 +34,14 @@ def has_permission(doc, ptype, user):
         return doc.employee == user_employee
 
     hidden_roles = frappe.db.sql("""
-        SELECT role FROM `tabCustom DocPerm`
+        SELECT role FROM `tabDocPerm`
         WHERE parent = 'Salary Slip' AND hide = 1
     """, pluck="role")
 
     if not hidden_roles:
         return None
 
-    user_roles = set(frappe.get_roles(user))
+    user_roles = set(frappe.db.sql("SELECT role FROM `tabHas Role` WHERE parent = %s", user, pluck="role"))
     if not user_roles & set(hidden_roles):
         return None
 
@@ -92,14 +92,14 @@ def get_permission_query_conditions(user, doctype=None):
         return condition
 
     hidden_roles = frappe.db.sql("""
-        SELECT role FROM `tabCustom DocPerm`
+        SELECT role FROM `tabDocPerm`
         WHERE parent = 'Salary Slip' AND hide = 1
     """, pluck="role")
 
     if not hidden_roles:
         return ""
 
-    user_roles = set(frappe.get_roles(user))
+    user_roles = set(frappe.db.sql("SELECT role FROM `tabHas Role` WHERE parent = %s", user, pluck="role"))
     if not user_roles & set(hidden_roles):
         return ""
 
