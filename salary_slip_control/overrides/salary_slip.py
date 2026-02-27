@@ -6,7 +6,7 @@ def _all_user_roles_hidden(user):
     user_roles = set(frappe.db.sql("SELECT role FROM `tabHas Role` WHERE parent = %s", user, pluck="role"))
 
     rows = frappe.db.sql("""
-        SELECT role, hide FROM `tabDocPerm`
+        SELECT role, hide FROM `tabCustom DocPerm`
         WHERE parent = 'Salary Slip'
     """, as_dict=True)
 
@@ -17,6 +17,19 @@ def _all_user_roles_hidden(user):
     relevant_roles = user_roles & set(hide_map.keys())
 
     if not relevant_roles:
+        return False
+
+    # System Manager / Administrator ko hamesha full access
+    bypass_roles = {"System Manager", "Administrator"}
+    if user_roles & bypass_roles:
+        return False
+
+    # Sirf wo unlisted roles count karo jo Salary Slip access de sakte hain
+    salary_slip_roles = set(frappe.db.sql(
+        "SELECT role FROM `tabDocPerm` WHERE parent = 'Salary Slip'", pluck="role"
+    ))
+    unlisted_roles = (user_roles & salary_slip_roles) - set(hide_map.keys())
+    if unlisted_roles:
         return False
 
     return all(hide_map[role] == 1 for role in relevant_roles)
@@ -34,7 +47,7 @@ def has_permission(doc, ptype, user):
         return doc.employee == user_employee
 
     hidden_roles = frappe.db.sql("""
-        SELECT role FROM `tabDocPerm`
+        SELECT role FROM `tabCustom DocPerm`
         WHERE parent = 'Salary Slip' AND hide = 1
     """, pluck="role")
 
@@ -92,7 +105,7 @@ def get_permission_query_conditions(user, doctype=None):
         return condition
 
     hidden_roles = frappe.db.sql("""
-        SELECT role FROM `tabDocPerm`
+        SELECT role FROM `tabCustom DocPerm`
         WHERE parent = 'Salary Slip' AND hide = 1
     """, pluck="role")
 

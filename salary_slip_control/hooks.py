@@ -178,7 +178,7 @@ override_whitelisted_methods = {
 fixtures = [
     {
         "dt": "Custom Field",
-        "filters": [["dt", "=", "DocPerm"], ["fieldname", "=", "hide"]]
+        "filters": [["dt", "=", "Custom DocPerm"], ["fieldname", "=", "hide"]]
     }
 ]
 

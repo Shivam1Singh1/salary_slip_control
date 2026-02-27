@@ -34,7 +34,7 @@ def get_permissions(doctype=None, role=None):
 
     if doctype == "Salary Slip" and perms:
         rows = frappe.db.sql("""
-            SELECT role, hide FROM `tabDocPerm`
+            SELECT role, hide FROM `tabCustom DocPerm`
             WHERE parent = 'Salary Slip'
         """, as_dict=True)
         hide_map = {row.role: row.hide for row in rows}
