@@ -5,16 +5,14 @@ import frappe.core.page.permission_manager.permission_manager as original
 @frappe.whitelist()
 def update(doctype, role, permlevel, ptype, value=0):
     if doctype == "Salary Slip" and ptype == "hide":
-        frappe.db.set_value(
-            "Custom DocPerm",
-            {
-                "parent": "Salary Slip",
-                "role": role,
-                "permlevel": int(permlevel)
-            },
-            "hide",
-            int(value)
-        )
+        frappe.db.sql("""
+            UPDATE `tabCustom DocPerm`
+            SET hide = %s
+            WHERE parent = 'Salary Slip'
+            AND role = %s
+            AND permlevel = %s
+        """, (int(value), role, int(permlevel)))
+
         frappe.db.commit()
         frappe.clear_cache(doctype="Salary Slip")
         return

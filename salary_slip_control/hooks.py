@@ -28,7 +28,7 @@ app_license = "mit"
 # app_include_css = "/assets/salary_slip_control/css/salary_slip_control.css"
 
 app_include_js = [
-    "/assets/salary_slip_control/js/permission_manager_patch.js"
+    "/assets/salary_slip_control/salary_slip_control/js/permission_manager_patch.js"
 ]
 
 # include js, css files in header of web template
@@ -170,10 +170,12 @@ has_permission = {
 override_whitelisted_methods = {
     "frappe.core.page.permission_manager.permission_manager.update":
         "salary_slip_control.overrides.permission_manager.update",
+    "frappe.core.page.permission_manager.permission_manager.get_permissions":
+        "salary_slip_control.overrides.permission_manager.get_permissions",
 }
 
 # Fixtures
-# ------------------------------
+# --------
 
 fixtures = [
     {
@@ -181,6 +183,7 @@ fixtures = [
         "filters": [["dt", "=", "Custom DocPerm"], ["fieldname", "=", "hide"]]
     }
 ]
+
 
 # override_doctype_dashboards = {
 # 	"Task": "salary_slip_control.task.get_dashboard_data"
