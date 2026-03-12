@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ### Salary Slip Control
 
 Custom hide permission for Salary Slip
+=======
+### Gate Pass Control
+
+Custom hide permission for Gate Pass
+>>>>>>> fb4a87768200339635bff7e5e2f939779cc64346
 
 ### Installation
 

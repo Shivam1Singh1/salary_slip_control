@@ -28,7 +28,11 @@ app_license = "mit"
 # app_include_css = "/assets/salary_slip_control/css/salary_slip_control.css"
 
 app_include_js = [
+<<<<<<< HEAD
     "/assets/salary_slip_control/js/permission_manager_patch.js"
+=======
+    "/assets/salary_slip_control/salary_slip_control/js/permission_manager_patch.js"
+>>>>>>> fb4a87768200339635bff7e5e2f939779cc64346
 ]
 
 # include js, css files in header of web template
@@ -170,6 +174,7 @@ has_permission = {
 override_whitelisted_methods = {
     "frappe.core.page.permission_manager.permission_manager.update":
         "salary_slip_control.overrides.permission_manager.update",
+<<<<<<< HEAD
 
     "attendee_life_cycle_custom.custom_scripts.salary_slip.share_doc_with_permission":
         "salary_slip_control.overrides.salary_slip.share_doc_with_permission",
@@ -180,14 +185,30 @@ override_whitelisted_methods = {
 
 # Fixtures
 # ------------------------------
+=======
+    "frappe.core.page.permission_manager.permission_manager.get_permissions":
+        "salary_slip_control.overrides.permission_manager.get_permissions",
+}
+
+# Fixtures
+# --------
+>>>>>>> fb4a87768200339635bff7e5e2f939779cc64346
 
 fixtures = [
     {
         "dt": "Custom Field",
+<<<<<<< HEAD
         "filters": [["dt", "=", "DocPerm"], ["fieldname", "=", "hide"]]
     }
 ]
 
+=======
+        "filters": [["dt", "=", "Custom DocPerm"], ["fieldname", "=", "hide"]]
+    }
+]
+
+
+>>>>>>> fb4a87768200339635bff7e5e2f939779cc64346
 # override_doctype_dashboards = {
 # 	"Task": "salary_slip_control.task.get_dashboard_data"
 # }

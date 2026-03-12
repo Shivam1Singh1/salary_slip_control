@@ -1,0 +1,1 @@
+[{"doctype": "Custom Field", "name": "DocPerm-hide", "dt": "DocPerm", "fieldname": "hide", "fieldtype": "Check", "label": "Hide", "insert_after": "delete", "module": "Core"}]
