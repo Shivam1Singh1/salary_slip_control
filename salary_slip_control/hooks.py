@@ -1,7 +1,7 @@
-app_name = "gate_pass_control"
-app_title = "Gate Pass Control"
+app_name = "salary_slip_control"
+app_title = "Salary Slip Control"
 app_publisher = "Shivam Singh"
-app_description = "Custom hide permission for Gate Pass"
+app_description = "Custom hide permission for Salary Slip"
 app_email = "shivam.singh@microcrispr.com"
 app_license = "mit"
 
@@ -13,11 +13,11 @@ app_license = "mit"
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
-# 		"name": "gate_pass_control",
-# 		"logo": "/assets/gate_pass_control/logo.png",
-# 		"title": "Gate Pass Control",
-# 		"route": "/gate_pass_control",
-# 		"has_permission": "gate_pass_control.api.permission.has_app_permission"
+# 		"name": "salary_slip_control",
+# 		"logo": "/assets/salary_slip_control/logo.png",
+# 		"title": "Salary Slip Control",
+# 		"route": "/salary_slip_control",
+# 		"has_permission": "salary_slip_control.api.permission.has_app_permission"
 # 	}
 # ]
 
@@ -25,18 +25,18 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/gate_pass_control/css/gate_pass_control.css"
+# app_include_css = "/assets/salary_slip_control/css/salary_slip_control.css"
 
 app_include_js = [
-    "/assets/gate_pass_control/js/permission_manager_patch.js"
+    "/assets/salary_slip_control/js/permission_manager_patch.js"
 ]
 
 # include js, css files in header of web template
-# web_include_css = "/assets/gate_pass_control/css/gate_pass_control.css"
-# web_include_js = "/assets/gate_pass_control/js/gate_pass_control.js"
+# web_include_css = "/assets/salary_slip_control/css/salary_slip_control.css"
+# web_include_js = "/assets/salary_slip_control/js/salary_slip_control.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "gate_pass_control/public/scss/website"
+# website_theme_scss = "salary_slip_control/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -54,7 +54,7 @@ app_include_js = [
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "gate_pass_control/public/icons.svg"
+# app_include_icons = "salary_slip_control/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -76,48 +76,48 @@ app_include_js = [
 # ----------
 
 # jinja = {
-# 	"methods": "gate_pass_control.utils.jinja_methods",
-# 	"filters": "gate_pass_control.utils.jinja_filters"
+# 	"methods": "salary_slip_control.utils.jinja_methods",
+# 	"filters": "salary_slip_control.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "gate_pass_control.install.before_install"
-# after_install = "gate_pass_control.install.after_install"
+# before_install = "salary_slip_control.install.before_install"
+# after_install = "salary_slip_control.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "gate_pass_control.uninstall.before_uninstall"
-# after_uninstall = "gate_pass_control.uninstall.after_uninstall"
+# before_uninstall = "salary_slip_control.uninstall.before_uninstall"
+# after_uninstall = "salary_slip_control.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 
-# before_app_install = "gate_pass_control.utils.before_app_install"
-# after_app_install = "gate_pass_control.utils.after_app_install"
+# before_app_install = "salary_slip_control.utils.before_app_install"
+# after_app_install = "salary_slip_control.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 
-# before_app_uninstall = "gate_pass_control.utils.before_app_uninstall"
-# after_app_uninstall = "gate_pass_control.utils.after_app_uninstall"
+# before_app_uninstall = "salary_slip_control.utils.before_app_uninstall"
+# after_app_uninstall = "salary_slip_control.utils.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
 
-# notification_config = "gate_pass_control.notifications.get_notification_config"
+# notification_config = "salary_slip_control.notifications.get_notification_config"
 
 # Permissions
 # -----------
 
 permission_query_conditions = {
-    "Gate Pass": "gate_pass_control.overrides.gate_pass.get_permission_query_conditions"
+    "Salary Slip": "salary_slip_control.overrides.salary_slip.get_permission_query_conditions"
 }
 
 has_permission = {
-    "Gate Pass": "gate_pass_control.overrides.gate_pass.has_permission"
+    "Salary Slip": "salary_slip_control.overrides.salary_slip.has_permission"
 }
 
 # DocType Class
@@ -143,39 +143,39 @@ has_permission = {
 
 # scheduler_events = {
 # 	"all": [
-# 		"gate_pass_control.tasks.all"
+# 		"salary_slip_control.tasks.all"
 # 	],
 # 	"daily": [
-# 		"gate_pass_control.tasks.daily"
+# 		"salary_slip_control.tasks.daily"
 # 	],
 # 	"hourly": [
-# 		"gate_pass_control.tasks.hourly"
+# 		"salary_slip_control.tasks.hourly"
 # 	],
 # 	"weekly": [
-# 		"gate_pass_control.tasks.weekly"
+# 		"salary_slip_control.tasks.weekly"
 # 	],
 # 	"monthly": [
-# 		"gate_pass_control.tasks.monthly"
+# 		"salary_slip_control.tasks.monthly"
 # 	],
 # }
 
 # Testing
 # -------
 
-# before_tests = "gate_pass_control.install.before_tests"
+# before_tests = "salary_slip_control.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 
 override_whitelisted_methods = {
     "frappe.core.page.permission_manager.permission_manager.update":
-        "gate_pass_control.overrides.permission_manager.update",
+        "salary_slip_control.overrides.permission_manager.update",
 
-    "attendee_life_cycle_custom.custom_scripts.gate_pass.share_doc_with_permission":
-        "gate_pass_control.overrides.gate_pass.share_doc_with_permission",
+    "attendee_life_cycle_custom.custom_scripts.salary_slip.share_doc_with_permission":
+        "salary_slip_control.overrides.salary_slip.share_doc_with_permission",
 
-    "attendee_life_cycle_custom.custom_scripts.gate_pass.set_employee_name_on_gate_pass":
-        "gate_pass_control.overrides.gate_pass.set_employee_name_on_gate_pass",
+    "attendee_life_cycle_custom.custom_scripts.salary_slip.set_employee_name_on_salary_slip":
+        "salary_slip_control.overrides.salary_slip.set_employee_name_on_salary_slip",
 }
 
 # Fixtures
@@ -189,7 +189,7 @@ fixtures = [
 ]
 
 # override_doctype_dashboards = {
-# 	"Task": "gate_pass_control.task.get_dashboard_data"
+# 	"Task": "salary_slip_control.task.get_dashboard_data"
 # }
 
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
@@ -199,14 +199,14 @@ fixtures = [
 # Request Events
 # ----------------
 
-# before_request = ["gate_pass_control.utils.before_request"]
-# after_request = ["gate_pass_control.utils.after_request"]
+# before_request = ["salary_slip_control.utils.before_request"]
+# after_request = ["salary_slip_control.utils.after_request"]
 
 # Job Events
 # ----------
 
-# before_job = ["gate_pass_control.utils.before_job"]
-# after_job = ["gate_pass_control.utils.after_job"]
+# before_job = ["salary_slip_control.utils.before_job"]
+# after_job = ["salary_slip_control.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -217,7 +217,7 @@ fixtures = [
 # --------------------------------
 
 # auth_hooks = [
-# 	"gate_pass_control.auth.validate"
+# 	"salary_slip_control.auth.validate"
 # ]
 
 # export_python_type_annotations = True

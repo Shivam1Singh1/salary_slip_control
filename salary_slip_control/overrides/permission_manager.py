@@ -4,11 +4,11 @@ import frappe.core.page.permission_manager.permission_manager as original
 
 @frappe.whitelist()
 def update(doctype, role, permlevel, ptype, value=0):
-    if doctype == "Gate Pass" and ptype == "hide":
+    if doctype == "Salary Slip" and ptype == "hide":
         frappe.db.set_value(
             "Custom DocPerm",
             {
-                "parent": "Gate Pass",
+                "parent": "Salary Slip",
                 "role": role,
                 "permlevel": int(permlevel)
             },
@@ -16,7 +16,7 @@ def update(doctype, role, permlevel, ptype, value=0):
             int(value)
         )
         frappe.db.commit()
-        frappe.clear_cache(doctype="Gate Pass")
+        frappe.clear_cache(doctype="Salary Slip")
         return
 
     return original.update(
@@ -32,11 +32,11 @@ def update(doctype, role, permlevel, ptype, value=0):
 def get_permissions(doctype=None, role=None):
     perms = original.get_permissions(doctype=doctype, role=role)
 
-    if doctype == "Gate Pass" and perms:
+    if doctype == "Salary Slip" and perms:
         hide_map = {}
         rows = frappe.db.sql("""
             SELECT role, hide FROM `tabCustom DocPerm`
-            WHERE parent = 'Gate Pass'
+            WHERE parent = 'Salary Slip'
         """, as_dict=True)
         for row in rows:
             hide_map[row.role] = row.hide

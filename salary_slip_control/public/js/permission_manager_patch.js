@@ -1,14 +1,14 @@
-window.gpc_inject_hide = function() {
+window.gpc_inject_hide = function () {
     let pg = frappe.pages["permission-manager"];
     if (!pg) return;
     let engine = pg.permission_engine;
     if (!engine || !engine.perm_list || !engine.table) return;
-    if (engine.get_doctype() !== "Gate Pass") return;
+    if (engine.get_doctype() !== "Salary Slip") return;
 
     (engine.perm_list || []).forEach((d) => {
         if (d.permlevel !== 0) return;
 
-        let row = engine.table.find("tbody tr").filter(function() {
+        let row = engine.table.find("tbody tr").filter(function () {
             return $(this).find("td[data-fieldname='role']").text().replace(/\s+/g, ' ').trim().startsWith(d.role);
         });
         if (!row.length) return;
@@ -19,11 +19,11 @@ window.gpc_inject_hide = function() {
         pc.append(`<div class='col-md-4' data-fieldname='hide'><div class='checkbox'><label style='text-transform:capitalize'><input type='checkbox' data-ptype='hide' data-role='${d.role}' data-permlevel='${d.permlevel}' data-doctype='${d.parent}' ${d.hide ? "checked" : ""}>Hide</label></div></div>`);
     });
 
-    engine.body.off("click.hide_patch").on("click.hide_patch", "input[data-ptype='hide']", function() {
+    engine.body.off("click.hide_patch").on("click.hide_patch", "input[data-ptype='hide']", function () {
         frappe.dom.freeze();
         let chk = $(this);
         frappe.call({
-            method: "gate_pass_control.overrides.permission_manager.update",
+            method: "salary_slip_control.overrides.permission_manager.update",
             args: {
                 role: chk.attr("data-role"),
                 permlevel: chk.attr("data-permlevel"),
@@ -44,10 +44,10 @@ window.gpc_inject_hide = function() {
     });
 };
 
-frappe.router.on("change", function() {
+frappe.router.on("change", function () {
     if (frappe.get_route()[0] !== "permission-manager") return;
     let attempts = 0;
-    let poll = setInterval(function() {
+    let poll = setInterval(function () {
         attempts++;
         let engine = frappe.pages["permission-manager"] && frappe.pages["permission-manager"].permission_engine;
         if (!engine) {
@@ -58,7 +58,7 @@ frappe.router.on("change", function() {
         if (!engine.__hide_patched) {
             engine.__hide_patched = true;
             let orig = engine.render.bind(engine);
-            engine.render = function(perm_list) {
+            engine.render = function (perm_list) {
                 orig(perm_list);
                 setTimeout(window.gpc_inject_hide, 0);
             };
@@ -67,7 +67,7 @@ frappe.router.on("change", function() {
     }, 200);
 });
 
-$(document).on("page-change", function() {
+$(document).on("page-change", function () {
     if (frappe.get_route()[0] === "permission-manager") {
         setTimeout(window.gpc_inject_hide, 800);
     }

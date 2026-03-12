@@ -1,9 +1,9 @@
 [project]
-name = "gate_pass_control"
+name = "salary_slip_control"
 authors = [
     { name = "Shivam Singh", email = "shivam.singh@microcrispr.com"}
 ]
-description = "Custom hide permission for Gate Pass"
+description = "Custom hide permission for Salary Slip"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
